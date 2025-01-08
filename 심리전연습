@@ -1,0 +1,49 @@
+from random import *
+##card = 
+user_card = choices(['가위','바위','보'],k=5)
+com_card = choices(['가위','바위','보'],k=5)
+user_score=0
+com_score=0
+while len(user_card)!=0 :
+    print("플레이어 카드 :",user_card)
+    user_go = input('가위 바위 보! ')
+    if user_go not in user_card:
+        print('입력하신 카드는 없는 카드입니다.')
+        continue
+    com_go = choice(com_card)
+    print('-----승부 결과-----')
+    print('컴퓨터는 %s를 냈습니다.'%com_go)
+    if user_go == com_go :
+        print("비겼습니다 !")
+    elif user_go == "바위" :
+        if com_go == "가위":
+            print("이겼습니다 !")
+            user_score+=1
+        elif com_go == "보":
+            print("졌습니다 ㅠㅠㅠ")
+            com_score +=1
+    elif user_go == "가위":
+        if com_go == "바위":
+            print("졌습니다 ㅠㅠㅠ")
+            com_score +=1
+        elif com_go == "보":
+            print("이겼습니다 !")
+            user_score+=1
+    elif user_go == "보":
+        if com_go == "바위":
+            print("이겼습니다 !")
+            user_score+=1
+        elif com_go == "가위":
+            print("졌습니다 ㅠㅠㅠ")
+            com_score +=1
+    user_card.remove(user_go)
+    com_card.remove(com_go)
+
+print("-----점수-----")
+print("플레이어 : %d    컴퓨터  : %d"%(user_score,com_score))
+if user_score > com_score :
+    print("플레이어 WIN!")
+elif user_score < com_score :
+    print("플레이어 LOSE....")
+else :
+    print("비겼습니다.")
